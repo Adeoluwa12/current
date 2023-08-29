@@ -1,0 +1,40 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <title>View Results</title>
+   <link rel="stylesheet" type="text/css" href="/viewresult.css">
+</head>
+<body>
+   <h1>Saved Conversion Results</h1>
+   <table class="tabili">
+       <tr>
+           <th>Currency</th>
+           <th>Converted Amount</th>
+       </tr>
+       <% for (const result of results) { %>
+           <tr>
+               <td><%= result.selectedCurrency %></td>
+               <td>
+                   <ul class="json-list">
+                       <% for (const key in result.results) { %>
+                           <li><strong><%= key %></strong>: <%= result.results[key] %></li>
+                       <% } %>
+                   </ul>
+               </td>
+           </tr>
+       <% } %>
+   </table>
+
+   <div class="use">
+       <button id="btn"><a href="/user/dashboard/conversion">Start Next Currency</a></button>
+       <p>NOTE: The next currency should be another currency</p>
+   </div>
+
+   <div>
+       <button class="view"><a href="/user/dashboard/view">View Final Results</a></button>
+   </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Conversion Results</title>
+   <link rel="stylesheet" type="text/css" href="/final.css">
+</head>
+<body>
+   <h1>Conversion Results</h1>
+   <table class="tabili">
+       <tr>
+           <th>Currency</th>
+           <th>Converted Amount in (<%= selectedCurrency %>)</th>
+       </tr>
+       <% const sortedCurrencies = Object.keys(results).sort((a, b) => results[b] - results[a]); %>
+       <% for (const currency of sortedCurrencies) { %>
+           <tr>
+               <td><%= currency %></td>
+               <td><%= results[currency] %></td>
+           </tr>
+       <% } %>
+   </table>
+   <form action="/user/dashboard/saveresult" method="post">
+       <input type="hidden" name="selectedCurrency" value="<%= selectedCurrency %>">
+       <input type="hidden" name="results" value='<%= JSON.stringify(results) %>'>
+       <input type="submit" value="Save Result">
+   </form>
+</body>
+</html>

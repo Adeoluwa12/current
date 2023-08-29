@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Results</title>
+    <link rel="stylesheet" href="/view.css">
+</head>
+<body>
+    <h1>Saved Conversion Results</h1>
+
+    <% if (results.length === 0) { %>
+        <p>No saved results available.</p>
+    <% } else { %>
+        <table class="tabili">
+            <tr>
+                <th>Currency</th>
+                <th>Converted Amount</th>
+                <th>Results</th>
+
+            </tr>
+            <% for (const result of results) { %>
+                <tr>
+                    <td><%= result.selectedCurrency %></td>
+                    <td><%= result.convertedAmount %></td>
+                    <td>
+                        <ul class="json-list">
+                            <% for (const key in result.results) { %>
+                                <li><strong><%= key %></strong>: <%= result.results[key] %></li>
+                            <% } %>
+                        </ul>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+    <% } %>
+
+    <div class="use">
+        <form action="/user/dashboard/clearresults" method="post">
+          <button class="btn1" type="submit">Clear Results</button>
+        </form>
+      </div>
+
+      <br>
+
+      <div>
+        <p class="btn"><a href="/user/dashboard">Return to Dashboard</a></p>
+      </div>
+</body>
+</html>
+
